@@ -4,6 +4,8 @@ export function searchGithub () {
   return (dispatch, state) => {
     const {repos: {searchQuery}} = state
 
+    if (!searchQuery) return
+
     dispatch({
       types: [c.FETCH_REPO_BEGIN, c.FETCH_REPO_SUCCEED, c.FETCH_REPO_FAILED],
       promise: fetch(`https://api.github.com/search/repositories?q=${searchQuery}`, {
