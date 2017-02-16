@@ -1,8 +1,8 @@
 import c from '../constants'
 
 export function searchGithub () {
-  return (dispatch, state) => {
-    const {repos: {searchQuery}} = state
+  return (dispatch, getState) => {
+    const {searchQuery} = getState().repos
 
     if (!searchQuery) return
 

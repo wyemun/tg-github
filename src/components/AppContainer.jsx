@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Details from './Details'
 import ResultList from './ResultList'
+import { searchGithub } from '../actions/repo'
 
 class AppContainer extends Component {
   render () {
@@ -28,8 +29,10 @@ const mapStateToProps = (state) => {
 
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   actions : bindActionCreators( ActionCreator, dispatch)
-// })
+const mapDispatchToProps = (dispatch) => ({
+  actions: {
+    searchGithub: () => { dispatch(searchGithub()) },
+  },
+})
 
-export default connect(mapStateToProps)(AppContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
