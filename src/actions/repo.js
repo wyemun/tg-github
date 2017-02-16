@@ -1,3 +1,4 @@
+import c from '../constants'
 
 export function searchGithub () {
   return {
@@ -7,14 +8,14 @@ export function searchGithub () {
 
 export function selectRepo (id) {
   return {
-    // TODO add constant
+    type: c.SELECT_REPO,
     payload: {id},
   }
 }
 
 export function changeQuery (searchQuery) {
   return {
-    // TODO add constant
+    type: c.CHANGE_QUERY,
     payload: {searchQuery},
   }
 }
