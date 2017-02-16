@@ -1,0 +1,40 @@
+{
+  "name": "tg-github",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web:hot": "webpack-dashboard -- ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --content-base ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wyemun/tg-github.git"
+  },
+  "author": "wyemun",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "babel-preset-latest": "^6.22.0",
+    "eslint": "^3.14.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "webpack": "^2.2.1",
+    "webpack-dashboard": "^0.3.0",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/wyemun/tg-github/issues"
+  },
+  "homepage": "https://github.com/wyemun/tg-github#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
