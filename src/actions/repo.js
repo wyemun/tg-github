@@ -1,8 +1,17 @@
 import c from '../constants'
 
 export function searchGithub () {
-  return {
-    // TODO Fetch API
+  return (dispatch, state) => {
+    const {repos: {searchQuery}} = state
+
+    dispatch({
+      types: [c.FETCH_REPO_BEGIN, c.FETCH_REPO_SUCCEED, c.FETCH_REPO_FAILED],
+      promise: fetch(`https://api.github.com/search/repositories?q=${searchQuery}`, {
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+        },
+      }),
+    })
   }
 }
 
