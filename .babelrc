@@ -1,3 +1,4 @@
 {
-  "presets": ["airbnb", "latest"]
+  "presets": ["airbnb", "latest"],
+  "plugins": ["transform-class-properties"]
 }

@@ -79,6 +79,7 @@ module.exports = {
       loader: 'babel-loader',
       query: {
         presets: ['latest'],
+        plugins: ['transform-class-properties'],
       },
     }],
   },

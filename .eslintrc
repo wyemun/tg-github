@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": ["standard"],
   "rules": {
     "comma-dangle": [2, "always-multiline"],
@@ -11,14 +12,15 @@
     "react"
   ],
   "ecmaFeatures": {
+    "classes": true,
     "jsx": true,
     "modules": true
   },
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true,
-        "experimentalObjectRestSpread": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "env": {
