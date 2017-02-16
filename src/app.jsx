@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import AppContainer from './components/AppContainer'
 
 ReactDOM.render(
-  <h1>React loaded!</h1>,
+  <AppContainer />,
   document.getElementById('app')
 )
