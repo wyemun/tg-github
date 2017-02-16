@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-export default class Details extends Component {
+class Details extends Component {
 
   static propTypes = {
     selectedId: PropTypes.string,
@@ -8,8 +9,8 @@ export default class Details extends Component {
     url: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    watchersCount: PropTypes.number,
-    stargazersCount: PropTypes.number,
+    watcherCount: PropTypes.number,
+    stargazerCount: PropTypes.number,
   }
 
   static defaultProps = {
@@ -18,18 +19,22 @@ export default class Details extends Component {
     url: 'Unknown',
     title: 'Untitled',
     description: 'No description',
-    watchersCount: 0,
-    stargazersCount: 0,
+    watcherCount: 0,
+    stargazerCount: 0,
   }
 
   render () {
-    const { language, url, title, description, watchersCount, stargazersCount } = this.props
+    const { opened, language, url, title, description, watcherCount, stargazerCount } = this.props
+
+    if(!opened) {
+      return (<div></div>)
+    }
 
     return (
       <div className="column">
         <div className="ui segments raised">
           <div className="ui secondary segment">
-            <h4>Details</h4>
+            <h4><i className="browser icon"/> Details</h4>
           </div>
           <div className="ui segment">
             <h3><a href={url} target="_blank">{title}</a></h3>
@@ -41,10 +46,15 @@ export default class Details extends Component {
             <p>{language}</p>
 
             <h4>Total Watchers</h4>
-            <p>{watchersCount}</p>
+            <p>{watcherCount}</p>
 
             <h4>Total Stars</h4>
-            <p>{stargazersCount}</p>
+            <p>{stargazerCount}</p>
+          </div>
+          <div className="ui segment">
+            <a href={url} target="_blank" className="ui green fluid button">
+              <i className="external icon"/> View on Github
+            </a>
           </div>
         </div>
       </div>
@@ -52,3 +62,24 @@ export default class Details extends Component {
   }
 
 }
+
+const mapStateToProps = ({repos}) => {
+  const { selectedId, results } = repos
+
+  let cState = {
+    opened: !!selectedId
+  }
+
+  const view = results.find( item => item.id === selectedId) || {}
+
+  if(selectedId) {
+    cState = {
+      ...cState,
+      ...view
+    }
+  }
+
+  return cState
+}
+
+export default connect(mapStateToProps)(Details)

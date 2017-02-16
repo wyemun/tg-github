@@ -6,6 +6,8 @@ const initialState = {
   searchQuery: undefined,
   results: [],
 
+  hasSearched: false,
+
   // fetching states
   isFetching: false,
   hasFetched: false,
@@ -33,6 +35,7 @@ export default createReducer(initialState, {
       hasFetched: false,
       results: [], // reset store
       selectedId: null,
+      hasSearched: true,
     }
   ),
 

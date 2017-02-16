@@ -11,7 +11,10 @@ class AppContainer extends Component {
 
     return (
       <div className="ui container" style={{marginTop: '4em'}}>
-        <h1 className="ui blue header">Awesome Github Repository Searcher</h1>
+        <h1 className="ui blue header"><i className="github icon" /> Awesome Github Repository Searcher</h1>
+        <h3 className="ui grey header" style={{marginTop: '-1em'}}>by <a href="https://twitter.com/wyemun">wyemun</a></h3>
+
+        <div className="ui hidden divider"></div>
 
         <div style={{paddingBottom: '2em'}}>
           <div className="ui fluid icon input">

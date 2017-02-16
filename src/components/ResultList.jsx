@@ -14,7 +14,7 @@ class ResultList extends Component {
   }
 
   render () {
-    const { items, isFetching, searchQuery } = this.props
+    const { items, isFetching, hasSearched, selectedId } = this.props
 
     if (isFetching) {
       return (<div className="column">
@@ -23,7 +23,7 @@ class ResultList extends Component {
     }
 
     if (items.length === 0) {
-      if (!searchQuery) {
+      if (!hasSearched) {
         return (
           <div className="column">
             <h4 className="ui block header">Start searching for something!</h4>
@@ -48,6 +48,7 @@ class ResultList extends Component {
             <ResultCard
               key={`res-${item.id}`}
               {...item}
+              isActive={item.id === selectedId}
               onClick={this.props.actions.selectRepo.bind(this, item.id)}/>
           ))}
         </div>
@@ -59,23 +60,24 @@ class ResultList extends Component {
 
 export const ResultCard = ({
   title,
-  body,
+  description,
   isActive = false,
   onClick = f => f,
 }) => (
   <a className={`ui fluid card ${isActive && 'green'}`} onClick={onClick}>
     <div className="content">
-      <div className="header">{title}</div>
-      <div className="meta">{body}</div>
+      <div className="header"><i className="github alternate icon" /> {title}</div>
+      <div className="meta">{description}</div>
     </div>
   </a>
 )
 
 const mapStateToProps = ({repos}) => {
-  const { results, isFetching, searchQuery } = repos
+  const { selectedId, results, isFetching, hasSearched } = repos
   return {
     isFetching,
-    searchQuery,
+    selectedId,
+    hasSearched,
     items: results,
   }
 }
