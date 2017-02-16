@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import Details from './Details'
 import ResultList from './ResultList'
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
   render () {
     return (
       <div className="ui container" style={{marginTop: '4em'}}>
@@ -21,3 +23,13 @@ export default class AppContainer extends Component {
       </div>)
   }
 }
+
+const mapStateToProps = (state) => {
+
+}
+
+// const mapDispatchToProps = (dispatch) => ({
+//   actions : bindActionCreators( ActionCreator, dispatch)
+// })
+
+export default connect(mapStateToProps)(AppContainer)
