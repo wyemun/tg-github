@@ -2,6 +2,7 @@ import { createReducer } from '../utils'
 // import c from '../constants'
 
 const initialState = {
+  selectedId: null,
   searchQuery: undefined,
   results: [],
 }
