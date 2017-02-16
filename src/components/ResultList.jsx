@@ -17,7 +17,9 @@ class ResultList extends Component {
     const { items, isFetching, searchQuery } = this.props
 
     if (isFetching) {
-      return (<div className="column">Searching...</div>)
+      return (<div className="column">
+        <h4 className="ui block header">Searching...</h4>
+      </div>)
     }
 
     if (items.length === 0) {
@@ -42,7 +44,12 @@ class ResultList extends Component {
           Results
         </h4>
         <div>
-          { items.map((item, i) => (<ResultCard key={`res-${i}`} {...item}/>)) }
+          { items.map((item) => (
+            <ResultCard
+              key={`res-${item.id}`}
+              {...item}
+              onClick={this.props.actions.selectRepo.bind(this, item.id)}/>
+          ))}
         </div>
       </div>
     )
@@ -54,8 +61,9 @@ export const ResultCard = ({
   title,
   body,
   isActive = false,
+  onClick = f => f,
 }) => (
-  <a className={`ui fluid card ${isActive && 'green'}`}>
+  <a className={`ui fluid card ${isActive && 'green'}`} onClick={onClick}>
     <div className="content">
       <div className="header">{title}</div>
       <div className="meta">{body}</div>
@@ -74,7 +82,7 @@ const mapStateToProps = ({repos}) => {
 
 const mapDispatchToProps = (dispatch) => ({
   actions: {
-    selectRepo: () => { dispatch(selectRepo()) },
+    selectRepo: (id) => { dispatch(selectRepo(id)) },
   },
 })
 
