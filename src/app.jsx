@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
 import thunk from 'redux-thunk'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
@@ -19,6 +20,6 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  <AppContainer store={store} />,
+  <Provider store={store}><AppContainer /></Provider>,
   document.getElementById('app')
 )

@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
-export default class ResultList extends Component {
+import { selectRepo } from '../actions/repo'
+
+class ResultList extends Component {
 
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.object),
@@ -11,7 +14,28 @@ export default class ResultList extends Component {
   }
 
   render () {
-    const { items } = this.props
+    const { items, isFetching, searchQuery } = this.props
+
+    if (isFetching) {
+      return (<div className="column">Searching...</div>)
+    }
+
+    if (items.length === 0) {
+      if (!searchQuery) {
+        return (
+          <div className="column">
+            <h4 className="ui block header">Start searching for something!</h4>
+          </div>
+        )
+      }
+
+      return (
+        <div className="column">
+          <h4 className="ui block header">No results</h4>
+        </div>
+      )
+    }
+
     return (
       <div className="column">
         <h4 className="ui block header">
@@ -38,3 +62,20 @@ export const ResultCard = ({
     </div>
   </a>
 )
+
+const mapStateToProps = ({repos}) => {
+  const { results, isFetching, searchQuery } = repos
+  return {
+    isFetching,
+    searchQuery,
+    items: results,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: {
+    selectRepo: () => { dispatch(selectRepo()) },
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultList)
