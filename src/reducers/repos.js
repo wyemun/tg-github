@@ -3,7 +3,7 @@ import c from '../constants'
 
 const initialState = {
   selectedId: null,
-  searchQuery: 'react',
+  searchQuery: undefined,
   results: [],
 
   // fetching states
