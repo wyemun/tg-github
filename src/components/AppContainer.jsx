@@ -9,10 +9,18 @@ export class AppContainer extends Component {
 
   static propTypes = {
     searchQuery: PropTypes.string,
+    selectedId: PropTypes.string,
   }
 
   static defaultProps = {
     searchQuery: undefined,
+    selectedId: undefined,
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.selectedId !== this.props.selectedId) {
+      window.scrollTo(0, 0)
+    }
   }
 
   render () {
@@ -57,9 +65,10 @@ export class AppContainer extends Component {
 }
 
 const mapStateToProps = ({repos}) => {
-  const { searchQuery } = repos
+  const { searchQuery, selectedId } = repos
   return {
     searchQuery,
+    selectedId,
   }
 }
 
