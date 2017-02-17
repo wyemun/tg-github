@@ -11,6 +11,7 @@ export class Details extends Component {
     description: PropTypes.string,
     watcherCount: PropTypes.number,
     stargazerCount: PropTypes.number,
+    opened: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -21,12 +22,13 @@ export class Details extends Component {
     description: 'No description',
     watcherCount: 0,
     stargazerCount: 0,
+    opened: false,
   }
 
   render () {
     const { opened, language, url, title, description, watcherCount, stargazerCount } = this.props
 
-    if(!opened) {
+    if (!opened) {
       return (<div></div>)
     }
 
@@ -67,15 +69,15 @@ const mapStateToProps = ({repos}) => {
   const { selectedId, results } = repos
 
   let cState = {
-    opened: !!selectedId
+    opened: !!selectedId,
   }
 
-  const view = results.find( item => item.id === selectedId) || {}
+  const view = results.find(item => item.id === selectedId) || {}
 
-  if(selectedId) {
+  if (selectedId) {
     cState = {
       ...cState,
-      ...view
+      ...view,
     }
   }
 
