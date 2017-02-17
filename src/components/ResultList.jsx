@@ -3,14 +3,23 @@ import { connect } from 'react-redux'
 
 import { selectRepo } from '../actions/repo'
 
-class ResultList extends Component {
+export class ResultList extends Component {
 
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.object),
+    isFetching: PropTypes.bool,
+    selectedId: PropTypes.string,
+    hasSearched: PropTypes.bool,
+
+    // actions
+    selectRepo: PropTypes.func,
   }
 
   static defaultProps = {
     items: [],
+    isFetching: false,
+    selectedId: null,
+    hasSearched: false,
   }
 
   render () {
@@ -49,7 +58,7 @@ class ResultList extends Component {
               key={`res-${item.id}`}
               {...item}
               isActive={item.id === selectedId}
-              onClick={this.props.actions.selectRepo.bind(this, item.id)}/>
+              onClick={this.props.selectRepo.bind(this, item.id)}/>
           ))}
         </div>
       </div>
@@ -83,9 +92,7 @@ const mapStateToProps = ({repos}) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: {
-    selectRepo: (id) => { dispatch(selectRepo(id)) },
-  },
+  selectRepo: (id) => { dispatch(selectRepo(id)) },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultList)

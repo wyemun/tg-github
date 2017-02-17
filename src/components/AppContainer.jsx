@@ -5,7 +5,7 @@ import Details from './Details'
 import ResultList from './ResultList'
 import { searchGithub, changeQuery } from '../actions/repo'
 
-class AppContainer extends Component {
+export class AppContainer extends Component {
   render () {
     const { searchQuery } = this.props
 
