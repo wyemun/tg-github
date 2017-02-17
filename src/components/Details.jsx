@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-class Details extends Component {
+export class Details extends Component {
 
   static propTypes = {
     selectedId: PropTypes.string,

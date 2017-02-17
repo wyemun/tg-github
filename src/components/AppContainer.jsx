@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import Details from './Details'
@@ -6,6 +6,15 @@ import ResultList from './ResultList'
 import { searchGithub, changeQuery } from '../actions/repo'
 
 export class AppContainer extends Component {
+
+  static propTypes = {
+    searchQuery: PropTypes.string,
+  }
+
+  static defaultProps = {
+    searchQuery: undefined,
+  }
+
   render () {
     const { searchQuery } = this.props
 
@@ -21,7 +30,7 @@ export class AppContainer extends Component {
             <input
               type="text"
               placeholder="Type the keywords here, press `Enter` search"
-              autocomplete="off"
+              autoComplete={false}
               value={searchQuery}
               onChange={this.onTextChange.bind(this)}
               onKeyDown={this.onKeyDown.bind(this)}
@@ -37,12 +46,12 @@ export class AppContainer extends Component {
   }
 
   onTextChange (evt) {
-    this.props.actions.changeQuery(evt.target.value)
+    this.props.changeQuery(evt.target.value)
   }
 
   onKeyDown (evt) {
     if (evt.keyCode === 13) {
-      this.props.actions.searchGithub()
+      this.props.searchGithub()
     }
   }
 }
@@ -55,10 +64,8 @@ const mapStateToProps = ({repos}) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: {
-    searchGithub: () => { dispatch(searchGithub()) },
-    changeQuery: (t) => { dispatch(changeQuery(t)) },
-  },
+  searchGithub: () => { dispatch(searchGithub()) },
+  changeQuery: (t) => { dispatch(changeQuery(t)) },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
