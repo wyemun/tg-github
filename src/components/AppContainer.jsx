@@ -38,7 +38,7 @@ export class AppContainer extends Component {
             <i className="search icon"></i>
           </div>
         </div>
-        <div className="ui two column grid">
+        <div className="ui two column mobile reversed stackable grid">
           <ResultList />
           <Details />
         </div>
