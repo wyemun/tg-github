@@ -11,6 +11,7 @@ $ npm run web:hot
 
 * ReactJS
 * Redux
+* (UI) SemanticUI
 
 ### Testing Stacks
 * mocha
